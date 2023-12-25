@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "a backend from chai aur code channel - YT",
   "type": "module",
-
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js"
@@ -14,5 +13,8 @@
     "chai"
   ],
   "author": "Ayush Gupta",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.1.1"
+  }
 }
