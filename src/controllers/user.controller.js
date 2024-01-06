@@ -3,7 +3,8 @@ import { ApiError } from "../utils/ApiError.js"
 import { User } from "../models/user.model.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
-import { jwt } from "jsonwebtoken"
+import jwt from "jsonwebtoken"
+import mongoose from "mongoose"
 
 const generateAccessAndRefreshTokens = async(userId) => {
     try {
@@ -200,17 +201,17 @@ const refreshAccessToken = asyncHandler( async (req, res) => {
             secure: true
         }
     
-        const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(user._id)
+        const { accessToken,newRefreshToken } = await generateAccessAndRefreshTokens(user._id)
     
         return res
         .status(200)
         .cookie("accessToekn", accessToken, options)
-        .cookie("refreshToken", refreshToken, options)
+        .cookie("refreshToken", newRefreshToken, options)
         .json(
             new ApiResponse(
                 200, 
                 {accessToken, refreshToken: newRefreshToken},
-                "Access token refreshed"
+                "Access tokend refreshed"
             )
         )
     } catch (error) {
@@ -443,6 +444,9 @@ const getWatchHistory = asyncHandler( async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, user[0].watchHistory, "Watch history fetched successfully"))
 })
+
+
+
 
 export { 
     registerUser,
