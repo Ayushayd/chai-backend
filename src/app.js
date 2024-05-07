@@ -4,10 +4,10 @@ import cookieParser from "cookie-parser"
 
 const app = express()
 app.use(cors({
-    origin: process.env.CORS_ORIGIN, 
+    origin: process.env.CORS_ORIGIN,
+    methods: ["POST", "GET","DEL", "PUT"], 
     credentials: true
 }))
-
 
 // 3 major config
 // app.use is used for configuration
